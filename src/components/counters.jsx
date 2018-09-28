@@ -16,7 +16,15 @@ class Counters extends Component {
 
         counters= counters.concat([{id: id+1, value:0}]);
         this.setState({counters});
-        console.log(counters.length);
+        // console.log(counters.length);
+    }
+
+    handleDeleteCounter = (index) =>{
+        console.log(index)
+        var counters = this.state.counters.filter(c => c.id !== index);
+
+        this.setState({counters});
+        console.log('abc' + counters);
     }
 
     render() { 
@@ -25,8 +33,9 @@ class Counters extends Component {
                 <div className="row">
                     {this.state.counters.map(counter => 
                         (
-                            <Counter key={counter.id} value={counter.value} 
-                            onPushCounter = {this.handlePushCounter} />
+                            <Counter key={counter.id} counter={counter} 
+                            onPushCounter = {this.handlePushCounter}
+                            onDeleteCounter= {this.handleDeleteCounter} />
                         ))}
                 </div>
             </div>
